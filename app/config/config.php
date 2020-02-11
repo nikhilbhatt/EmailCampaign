@@ -3,17 +3,17 @@
 //Database Parameters
 
 define('DB_HOST','localhost');
-define('DB_USER','__YOUR_USERNAME__');
-define('DB_PASS','__YOUR_PASSWORD__');
-define('DB_NAME','__YOURDBNAME__');
+define('DB_USER','root');
+define('DB_PASS','root');
+define('DB_NAME','emailcampaign');
 
 //approot
 define('APPROOT',dirname(dirname(__FILE__)));
 
 //URLROOT
-define('URLROOT','__YOUR_URL');
+define('URLROOT','http://localhost/Email');
 
 //sitename
 
-define('SITENAME','__YOUR_SITE_NAME__');
+define('SITENAME','EmailCampaign');
 ?>

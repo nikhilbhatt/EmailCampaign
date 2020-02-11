@@ -1,10 +1,15 @@
-<?php 
-require_once APPROOT.'/views/includes/header.php';?>
+<?php require_once APPROOT.'/views/includes/header.php';?>
 
 <h1><?php
 echo $data['tittle'];
 ?></h1>
 
-<?php
+<div>
+  <form action="post" method>
+  <input type="text" name="name">
+  <input type="text" name="email">
+  <input type="submit" name="submitbutton" value="submit">
+  </form>
+</div>
 
-require_once APPROOT.'/views/includes/footer.php';?>
+<?php require_once APPROOT.'/views/includes/footer.php';?>
