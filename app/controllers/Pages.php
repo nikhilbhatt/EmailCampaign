@@ -6,13 +6,15 @@ Class Pages extends Controller{
 
     public function __construct()
     {
-        // echo "Pages controller is working soon it will be changed to error file";
-       
+         // echo "Pages controller is working soon it will be changed to error file";
+         //Load the data from model and put it here.
+
     }
-    public function index()
+    public function index()   //index is the default function which is called after constructor.
     {
          $data=[
-             'tittle'=>'welcome'
+             'tittle'=>'welcome',
+             'description'=>'Simple Email Campaign App build on php MVC framework'
          ];
         //default function
         $this->views('pages/index',$data);

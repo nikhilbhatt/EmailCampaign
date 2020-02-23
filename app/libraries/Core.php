@@ -19,10 +19,26 @@
         {
             $this->currentController=ucwords($url[0]);
             unset($url[0]);
+            require_once '../app/controllers/'.$this->currentController.'.php';
         }
-        require_once '../app/controllers/'.$this->currentController.'.php';
+        elseif(file_exists('../app/controllers/authentication/'.ucwords($url[0]).'.php'))
+        {
+            $this->currentController=ucwords($url[0]);
+            unset($url[0]);
+            require_once '../app/controllers/authentication/'.$this->currentController.'.php';
+        }
+        elseif(file_exists('../app/controllers/dashboard/'.ucwords($url[0]).'.php'))
+        {
+            $this->currentController=ucwords($url[0]);
+            unset($url[0]);
+            require_once '../app/controllers/dashboard/'.$this->currentController.'.php';
+        }
+        
+        else{
+               unset($url[0]);
+               require_once '../app/controllers/'.$this->currentController.'.php';
+         }
         $this->currentController=new $this->currentController;
-
         //now check for the second part of url 
         if(isset($url[1]))
         {

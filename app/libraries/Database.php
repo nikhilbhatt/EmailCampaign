@@ -78,6 +78,6 @@
     public function rowcount()
     {
       return $this->stmt->rowCount();   //rowcount is method which is part of pdo
-        }
+     }
   }
 ?>
