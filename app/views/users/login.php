@@ -29,8 +29,26 @@
             </div>
             <div class="mt-3 " align="right">
                    <a href="<?php echo URLROOT;?>/forgotPassword">Forgot Password?</a>
-            </div>
-      </div>
+          </div>
+
+          <div class="row mt-2 container">
+               <div class="col-md-5 text-center">
+               <hr style="color:#000000;">
+               </div>
+               <div class="col-md-2 mt-2 text-center">
+               <h6>OR</h6>
+               </div>
+               <div class="col-md-5 text-center">
+               <hr>
+               </div>
+          </div>
+          <div class="col-md-12 text-center mt-2">
+    <a class="btn btn-outline-primary" href="googleLogin" role="button" >
+      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+      Login with Google
+    </a>
+  </div>
+       </div>
     </div>
   </div>
 <?php require_once APPROOT.'/views/includes/footer.php';?>

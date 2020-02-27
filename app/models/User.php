@@ -54,6 +54,27 @@
           return false;
         }
       }
+      
+
+      public function verifyGoogleUser($data)
+      {
+        if(!$this->findUserByEmail($data['email']))
+        {
+          $this->db->query('INSERT INTO users(name,email) VALUES(:name,:email)');
+          $this->db->bindvalues(':email',$data['email']);
+          $this->db->bindvalues(':name',$data['name']);
+          if(!$this->db->execute())
+          {
+            return false;
+          }
+        }
+       
+        $this->db->query('SELECT * FROM users WHERE email=:email');
+        $this->db->bindvalues(':email',$data['email']);
+        $row=$this->db->single();
+        return $row;
+      }
+
     public function findUserByEmail($email)
     {
         $this->db->query('SELECT * FROM users WHERE email= :email');

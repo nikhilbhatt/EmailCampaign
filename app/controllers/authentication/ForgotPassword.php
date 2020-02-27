@@ -90,7 +90,7 @@ class ForgotPassword extends Controller{
                 }
                 else
                 {
-                    echo '<script>alert("something went nothing wrong")</script>';
+                    echo '<script>alert("something went wrong")</script>';
                     $this->views('users/forgotpassword');
                 }
 

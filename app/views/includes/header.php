@@ -10,4 +10,4 @@
 </head>
 <body>
 <?php require_once APPROOT.'/views/includes/navbar.php';?>
-<div class="container">
+<div class="container" >

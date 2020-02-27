@@ -16,4 +16,7 @@ define('URLROOT','http://localhost/Email');
 //sitename
 
 define('SITENAME','EmailCampaign');
+
+//208036174903-joq4bpbj6f05vq14vupaovhnt07qqcqs.apps.googleusercontent.com
+//rMI9dynwkc6GNRMdtOy7cPYt
 ?>

@@ -77,7 +77,6 @@ class Login extends Controller{
         $_SESSION['user_id']=$user->id;
         $_SESSION['user_name']=$user->name;
         $_SESSION['user_email']=$user->email;
-        // var_dump($_SESSION);pages/about
         redirect('pages/index');
     }
     public function isLoggedIn()
