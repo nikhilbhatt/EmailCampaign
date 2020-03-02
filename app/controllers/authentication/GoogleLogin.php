@@ -63,8 +63,8 @@ class GoogleLogin extends Controller{
     {
         session_start();
         $this->gclient=new Google_Client();
-        $this->gclient->setClientId("208036174903-joq4bpbj6f05vq14vupaovhnt07qqcqs.apps.googleusercontent.com");
-        $this->gclient->setClientSecret("rMI9dynwkc6GNRMdtOy7cPYt");
+        $this->gclient->setClientId("YOUR_ID");
+        $this->gclient->setClientSecret("YOUR_SECRET");
         $this->gclient->setApplicationName("Email Campaign");
         $this->gclient->setRedirectUri("http://localhost/Email/GoogleLogin/gcallback");
         $this->gclient->addScope("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email");
