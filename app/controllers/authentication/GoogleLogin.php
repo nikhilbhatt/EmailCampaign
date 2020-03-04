@@ -5,6 +5,10 @@ class GoogleLogin extends Controller{
 
     public function __construct()
     {
+        if(isLoggedIn())
+        {
+            redirect('LaunchCampaign');
+        }
         $this->userModel=$this->model('User');
     }
 
@@ -48,7 +52,7 @@ class GoogleLogin extends Controller{
         if($loggedInUser)
         {
             $this->createUserSession($loggedInUser);
-            redirect('pages');
+            redirect('LaunchCampaign');
         }
         else
         {
@@ -61,7 +65,10 @@ class GoogleLogin extends Controller{
 
     public function config()
     {
-        session_start();
+        if(session_status()==PHP_SESSION_NONE)
+        {
+            session_start();
+        }
         $this->gclient=new Google_Client();
         $this->gclient->setClientId("208036174903-joq4bpbj6f05vq14vupaovhnt07qqcqs.apps.googleusercontent.com");
         $this->gclient->setClientSecret("rMI9dynwkc6GNRMdtOy7cPYt");
@@ -71,11 +78,12 @@ class GoogleLogin extends Controller{
     }
     public function createUserSession($user)
     {
+        if(session_status()==PHP_SESSION_NONE){
         session_start();
+        }
         $_SESSION['user_id']=$user->id;
         $_SESSION['user_name']=$user->name;
         $_SESSION['user_email']=$user->email;
-        redirect('Mainpage');
     }
 }
 ?>

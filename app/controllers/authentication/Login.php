@@ -5,6 +5,10 @@ class Login extends Controller{
     public function __construct()
     {
       //model part of the function where all data fetched from database.
+      if(isLoggedIn())
+      {
+         redirect('LaunchCampaign');
+      }
       $this->userModel=$this->model('User');
       
     }
@@ -73,25 +77,15 @@ class Login extends Controller{
     }
     public function createUserSession($user)
     {
-        session_start();
+        if(session_status()==PHP_SESSION_NONE)
+        {
+            session_start();
+        }
         $_SESSION['user_id']=$user->id;
         $_SESSION['user_name']=$user->name;
         $_SESSION['user_email']=$user->email;
-        redirect('pages/index');
+        redirect('LaunchCampaign');
     }
-    public function isLoggedIn()
-    {
-        if(isset($_SESSION['user_id']))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-
 }
 
 ?>

@@ -5,7 +5,10 @@ class Register extends Controller{
     
     public function __construct()
     {
-        
+        if(isLoggedIn())
+        {
+            redirect('LaunchCampaign');
+        }
         $this->userModel=$this->model('User');
     }
     public function index()

@@ -9,7 +9,7 @@ class Logout{
     {
         session_start();
         session_destroy();
-        redirect('pages');
+        redirect('Login');
     }
 }
 

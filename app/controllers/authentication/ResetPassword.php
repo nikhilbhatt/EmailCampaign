@@ -5,6 +5,10 @@ class ResetPassword extends Controller{
     protected $email='';
     public function __construct()
     {
+        if(isLoggedIn())
+        {
+            redirect('LaunchCampaign');
+        }
        $this->userModel=$this->model('User');
     }
 

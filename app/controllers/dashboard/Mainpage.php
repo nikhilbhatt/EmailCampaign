@@ -9,7 +9,7 @@
       }
       public function index()
       {
-          
+        
       }
   }
 ?>

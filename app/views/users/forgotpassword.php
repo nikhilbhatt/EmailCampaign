@@ -1,4 +1,4 @@
-<?php require_once APPROOT.'/views/includes/header.php'; ?>
+<?php $page='forgotpassword';require_once APPROOT.'/views/includes/header.php'; ?>
 
 
 <div class="row">

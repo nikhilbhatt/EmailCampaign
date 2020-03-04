@@ -5,8 +5,13 @@ class ForgotPassword extends Controller{
 
     public function __construct()
     {
-        $this->userModel=$this->model('User');
-        
+        if(isLoggedIn())
+        {
+            redirect('LaunchCampaign');
+        }
+        // die("not set");
+        // var_dump($_SESSION['user_id']);
+        $this->userModel=$this->model('User');   
     }
     public function index()
     {

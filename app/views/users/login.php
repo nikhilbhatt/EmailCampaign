@@ -1,4 +1,4 @@
-<?php require_once APPROOT.'/views/includes/header.php';?>
+<?php $page='login'; require_once APPROOT.'/views/includes/header.php';?>
 
   <div class="row">
     <div class="col-md-6 mx-auto">
@@ -33,17 +33,17 @@
 
           <div class="row mt-2 container">
                <div class="col-md-5 text-center">
-               <hr style="color:#000000;">
+               <hr style="color:#123455; height:1px; background-color: #123455; border:none;">
                </div>
                <div class="col-md-2 mt-2 text-center">
                <h6>OR</h6>
                </div>
                <div class="col-md-5 text-center">
-               <hr>
+               <hr style="color:#123455; height:0.5px; background-color: #123455; border:none;">
                </div>
           </div>
           <div class="col-md-12 text-center mt-2">
-    <a class="btn btn-outline-primary" href="googleLogin" role="button" >
+    <a class="btn btn-outline-primary mt-2" href="googleLogin" role="button" >
       <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
       Login with Google
     </a>

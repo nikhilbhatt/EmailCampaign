@@ -10,7 +10,7 @@
     <title><?php echo SITENAME;?></title>
 </head>
 <body>
-<?php require_once APPROOT.'/views/includes/navbar.php';?>
+<?php $page='home'; require_once APPROOT.'/views/includes/navbar.php';?>
 
 <div>
 <div style="background-image: url(<?php echo URLROOT;?>/img/image1.jpg); height:900px; width:1000; background-position:center;

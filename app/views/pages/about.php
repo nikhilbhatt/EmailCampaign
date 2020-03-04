@@ -1,4 +1,5 @@
 <?php 
+$page='about';
 require_once APPROOT.'/views/includes/header.php';?>
 
 <h1><?php
