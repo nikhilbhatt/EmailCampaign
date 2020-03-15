@@ -54,13 +54,15 @@ class ForgotPassword extends Controller{
                     
                     $mail=new PHPMailer();
                     $mail->isSMTP(); 
+                    $mail->SMTPDebug=2;
+                    $mail->Mailer="smtp";
                     $mail->Host='smtp.gmail.com';
                     $mail->SMTPAuth =true;
                     $mail->Username="nikhilbhatt2210@gmail.com";
                     $mail->Password="Msdrsnik@123";
                     $mail->Port=465;
                     $mail->SMTPSecure="ssl";
-
+                    $mail->Priority=1;
                     $mail->setFrom("emailcampaign@gmail.com","no-reply Email Campaign");
                     $mail->addAddress($email);
                     $mail->isHTML(true);
@@ -83,6 +85,7 @@ class ForgotPassword extends Controller{
                     if($mail->send())
                     {
                         //redirect to new page saying verification link sent succcessfully.
+                        die($mail->ErrorInfo);
                         echo '<script>alert("Check your Email and create new password");document.location="Login"</script>';
 
                     }

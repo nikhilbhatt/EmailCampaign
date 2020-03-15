@@ -1,6 +1,7 @@
 <?php $page="listsubscriber"; require_once APPROOT.'/views/includes/header.php'?>
+<div class="container" >
 <div class="mt-4">
-  <div md-5 mt-4 align="right">
+  <div md-5 mt-2 align="right">
     <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addsubscriber"><i class="fa fa-plus"></i> Add Subscriber </Button>
  </div>
 
@@ -36,7 +37,7 @@
 
 <!-- Edit Model -->
     <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog " role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add Subscriber</h5>
@@ -67,7 +68,7 @@
 
 <!-- Delete Model -->
 <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add Subscriber</h5>
@@ -90,12 +91,12 @@
     </div>
 
 <!-- REST OF THE DATA FETCHING-->
-      <div class="card card-body bg-light md-5 mt-2">
-      <h1 class="text-center mt-2 mb-4 "> Subscriber List</h1>
+      <div class="card card-body bg-light md-5 mt-2 mb-5 table-responsive-md">
+      <h1 class="text-center mt-2 mb-5 "> Subscriber List</h1>
       <?php if(empty($data['result'])):?>
        <h4> Your subcriber list is empty! Click add subscriber button to add one</h4>
       <?php else: ?>
-      <table class="table table-striped">
+      <table class="table table-striped table-hover mb-5" style="width:100%">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -106,9 +107,9 @@
             <th style="visibility:hidden;">id</th>
           </tr>
         </thead>
+        <tbody>
         <?php $key=1;?>
         <?php foreach($data['result'] as $result) : ?>
-        <tbody class="<?php if($key%2!=0){echo 'bg-white';}?> text-dark">
           <tr>
             <td scope="row"><?php echo $key++;?></td>
             <td><?php echo $result->name;?></td>
@@ -117,36 +118,43 @@
             <td><button type="button" class="btn btn-danger deletebtn">DELETE </button></td>
             <td style="visibility:hidden;" class="bg-dark"><?php echo $result->id;?></td>
           </tr>
-        </tbody>
         <?php endforeach; ?>
+        </tbody>
       </table>
         <?php endif;?>
       </div>
+      <div class="mt-4">
 </div>
-
-<!-- Footer -->
 </div>
-<footer class="page-footer font-small navbar-dark bg-dark pt-2" style="position: fixed;
-left:0;
-width:100%;
-bottom: 0;
-font-family: 'Cantarell';
-font-size: 16px;">
-      <div class="text-center">
-      <p class="text-secondary">Email Campaign Webapp developed during 1 month internship</p>
-      </div>
-  <div class="footer-copyright text-center py-1">© 2020 Copyright:
-    <a href="https://coloredcow.com"> Coloredcow</a>
-  </div>
-</footer>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<srcipt type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script
+type="text/javascript" 
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.table').DataTable({
+     "pagingtype":"full_numbers",
+     "lengthMenu":[
+       [10,25,50,-1],
+       [10,25,50,"all"]
+     ],
+     responsive:true,
+     language:{
+           search:"_INPUT_",
+           searchPlaceholder:"Search Records"
+     }  
+    } );
+} );
+</script>
+
 <script type="text/javascript">
 $(document).ready(function () {
    $('.editbtn').on('click',function () {

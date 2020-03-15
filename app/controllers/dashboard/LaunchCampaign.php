@@ -48,19 +48,65 @@ class LaunchCampaign extends Controller
                'subject_err'=>'',
                'body_err'=>''
            ];
-          $this->views('dashboard/launchcampaign',$data);
+           $this->views('dashboard/launchcampaign',$data);
 
-        }  
-
-      //make a form which will send email to user
-      //make a model having option to add subscriber 
-      //reform navbar for loggin in user 
-      // add back button in forgot password and reset password
+        }   
 
    }
    public  function launchCampaignUsingAws($data){
+      //fetch email of subscribers.
+      $subscribers=$this->campaignModel->getSubscriberList();
+      $emails=[];
+      foreach($subscribers as $subscriber)
+      {
+         array_push($emails,$subscriber->email);
+      }
       //Wtite Code for sending email using Aws and its credentials.
-      //if email us successfully sent. send data to the database. with timestamp and show changes in the history.
+      $SesClient = new SesClient([
+         'profile' => 'default',
+         'version' => '2010-12-01',
+         'region'  => 'ap-south-1'
+        ]);
+       $senderEmail = 'japer78029@allmtr.com';
+       $configuration_set = 'ConfigSet';
+       $plaintext_body = 'This email was sent with Amazon SES using the AWS SDK for PHP.' ;
+       $char_set = 'UTF-8';
+       try {
+                $result = $SesClient->sendEmail([
+                        'Destination' => [
+                                           'ToAddresses' => $emails,
+                                          ],
+                         'ReplyToAddresses' => [$senderEmail],
+                         'Source' => $senderEmail,
+                         'Message' => [
+                         'Body' => [
+                                     'Html' => [
+                                                'Charset' => $char_set,
+                                                'Data' => $data['body'],
+                                                ],
+                                      'Text' => [
+                                                'Charset' => $char_set,
+                                                'Data' => $plaintext_body,
+                                                ],
+                                    ],
+                        'Subject' => [
+                                     'Charset' => $char_set,
+                                     'Data' => $data['subject'],
+                                    ],
+                                ],
+                        'ConfigurationSetName' => $configuration_set,
+                    ]);
+
+                    $messageId = $result['MessageId'];
+
+                    //if email us successfully sent. send data to the database. with timestamp and show changes in the history.
+                    $this->saveData($data['subject'],$data['body']);
+                    echo '<script>alert("email sent!!");document.location="LaunchCampaign"</script>';
+            } catch (AwsException $e) {
+                // output error message if fails
+                echo '<script>alert("The email was not sent.")</script>';
+                //  header("location:sendemail");
+            } 
    
    }
    public function saveData($data)

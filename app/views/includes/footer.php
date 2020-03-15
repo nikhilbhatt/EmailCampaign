@@ -1,19 +1,3 @@
-
-</div>
-<footer class="page-footer font-small navbar-dark bg-dark pt-2" style="position: fixed;
-left:0;
-width:100%;
-bottom: 0;
-font-family: 'Cantarell';
-font-size: 16px;">
-      <div class="text-center">
-      <p class="text-secondary">Email Campaign Webapp developed during 1 month internship</p>
-      </div>
-  <div class="footer-copyright text-center py-1">© 2020 Copyright:
-    <a href="https://coloredcow.com"> Coloredcow</a>
-  </div>
-</footer>
-
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

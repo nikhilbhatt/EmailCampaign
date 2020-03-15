@@ -1,5 +1,5 @@
 <?php $page='login'; require_once APPROOT.'/views/includes/header.php';?>
-
+<div class="container" >
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="card card-body bg-light mt-5">
@@ -51,4 +51,5 @@
        </div>
     </div>
   </div>
+</div>
 <?php require_once APPROOT.'/views/includes/footer.php';?>

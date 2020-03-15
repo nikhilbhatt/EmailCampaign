@@ -23,6 +23,12 @@ class CampaignHistory{
 
         $this->db->execute();
     }
+    public function getSubscriberList()
+    {
+        $this->db->query("SELECT * FROM subscribers WHERE userid=:userid");
+        $this->db->bindvalues(':userid',$_SESSION['user_id']);
+        return $this->db->resultSet();
+    }
 
 }
 

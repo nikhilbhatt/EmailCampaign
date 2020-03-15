@@ -1,6 +1,6 @@
 <?php $page='launchcampaign'; require_once APPROOT.'/views/includes/header.php' ?>
 
-
+<div class="container" >
 <div class="row">
     <div class="col-md-12 mx-auto">
       <div class="card card-body bg-light mt-5">
@@ -20,9 +20,11 @@
                <span class="invalid-feedback"><?php echo $data['body_err'];?> </span>
             </div>
             <div class="container col-md-2 mt-4">
-                <input type="submit" value="Launch" class="btn btn-primary btn-block">
+                <input type="submit" value="Launch" class="btn btn-block" style="background-color:#FF0065; color:white;">
             </div>
        </div>
     </div>
   </div>
+</div>  
+<?php require_once APPROOT.'/views/includes/bottom.php'?>
 <?php require_once APPROOT.'/views/includes/footer.php' ?>

@@ -48,7 +48,6 @@ class GoogleLogin extends Controller{
          ];
 
         $loggedInUser=$this->userModel->verifyGoogleUser($data);
-
         if($loggedInUser)
         {
             $this->createUserSession($loggedInUser);
