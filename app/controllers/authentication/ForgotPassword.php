@@ -59,7 +59,7 @@ class ForgotPassword extends Controller{
                     $mail->Host='smtp.gmail.com';
                     $mail->SMTPAuth =true;
                     $mail->Username="nikhilbhatt2210@gmail.com";
-                    $mail->Password="Msdrsnik@123";
+                    $mail->Password="YOUR_PASSWORD";
                     $mail->Port=465;
                     $mail->SMTPSecure="ssl";
                     $mail->Priority=1;
