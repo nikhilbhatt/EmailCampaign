@@ -6,7 +6,7 @@
               <h3>No Previous History Available</h3>
               <span><a href='LaunchCampaign'>Click Here</a> to launch your first campaign</span>
             <?php else:?>  
-          <table class="table table-striped">
+          <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -15,16 +15,16 @@
                 <th scope="col">Time</th>
               </tr>
             </thead>
+            <tbody>
             <?php $key=1; foreach($data['result'] as $result) : ?>
-            <tbody class="<?php if($key%2!=0){echo 'bg-white';}?> text-dark">
               <tr>
                 <th scope="row"><?php echo $key++;?></th>
                 <td><?php echo $result->subject;?></td>
                 <td><?php echo $result->body;?></td>
                 <td><?php echo $result->timestamp;?></td>
               </tr>
-            </tbody>
             <?php endforeach; ?>
+            </tbody>
           </table>
           <?php endif;?>
     </div>
