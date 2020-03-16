@@ -1,0 +1,7 @@
+Steps to send Email using Amazon Ses:-
+
+
+1.Create the AWS access keys and download them in a file called credentials. save that file to /.aws/credentials .
+2.Download the AWS SDK from amazon website.
+3.Use the code given in aws ses documentation to send emails.
+

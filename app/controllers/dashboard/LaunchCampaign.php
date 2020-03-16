@@ -62,7 +62,6 @@ class LaunchCampaign extends Controller
       {
          array_push($emails,$subscriber->email);
       }
-      var_dump($emails);
       //Wtite Code for sending email using Aws and its credentials.
       $SesClient = new SesClient([
          'profile' => 'default',
@@ -71,7 +70,6 @@ class LaunchCampaign extends Controller
         ]);
        $senderEmail = 'nikhilbhatt2210@gmail.com';
        $configuration_set = 'ConfigSet';
-       $plaintext_body = 'This email was sent with Amazon SES using the AWS SDK for PHP.' ;
        $char_set = 'UTF-8';
        try {
                 $result = $SesClient->sendEmail([
@@ -88,7 +86,7 @@ class LaunchCampaign extends Controller
                                                 ],
                                       'Text' => [
                                                 'Charset' => $char_set,
-                                                'Data' => $plaintext_body,
+                                                'Data' => $data['body'],
                                                 ],
                                     ],
                         'Subject' => [
@@ -98,9 +96,7 @@ class LaunchCampaign extends Controller
                                 ],
                         'ConfigurationSetName' => $configuration_set,
                     ]);
-
                     $messageId = $result['MessageId'];
-
                     //if email us successfully sent. send data to the database. with timestamp and show changes in the history.
                     $this->saveData($data);
                     die('message='.$messageId);
