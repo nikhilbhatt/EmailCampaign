@@ -21,6 +21,7 @@ class ListSubscriber extends Controller{
            'result'=>$result,
            'name'=>trim($_POST['name']),
            'email'=>trim($_POST['email']),
+           'type'=>trim($_POST['type']),
            'name_err'=>'',
            'email_err'=>''
          ];
@@ -75,6 +76,7 @@ class ListSubscriber extends Controller{
              'name'=>trim($_POST['name']),
              'email'=>trim($_POST['email']),
              'id'=>$_POST['id'],
+             'type'=>$_POST['type'],
              'name_err'=>'',
              'email_err'=>'',
              'id_err'=>''

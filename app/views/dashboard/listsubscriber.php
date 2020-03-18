@@ -25,6 +25,17 @@
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" name="email" required>
                   </div>
+                  <div class="form-group">
+                    <label for="type">Subscriber Type</label>
+                    <select class="form-control" name="type">
+                       <option value="Student">Student</option>
+                       <option value="Engineer">Engineer</option>
+                       <option value="Journalist">Journalist</option>
+                       <option value="Professor">Professor</option>
+                       <option value="Doctor">Doctor</option>
+                       <option value="Other">Other</option>
+                    </select>
+                  </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -55,6 +66,17 @@
                         <label for="email">Email address</label>
                         <input type="email" id="email" class="form-control" name="email" required>
                       </div>
+                      <div class="form-group">
+                    <label for="type">Subscriber Type</label>
+                    <select class="form-control" name="type">
+                       <option value="Student">Student</option>
+                       <option value="Engineer">Engineer</option>
+                       <option value="Journalist">Journalist</option>
+                       <option value="Professor">Professor</option>
+                       <option value="Doctor">Doctor</option>
+                       <option value="Other">Other</option>
+                    </select>
+                  </div>
                         <input type="hidden" id="id" class="form-control" name="id">
           </div>
           <div class="modal-footer">
@@ -102,6 +124,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Subscriber Type</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
             <th style="visibility:hidden;">id</th>
@@ -114,6 +137,7 @@
             <td scope="row"><?php echo $key++;?></td>
             <td><?php echo $result->name;?></td>
             <td><?php echo $result->email;?></td>
+            <td><?php echo $result->type;?></td>
             <td><button type="button" class="btn btn-success editbtn">EDIT</button></td>
             <td><button type="button" class="btn btn-danger deletebtn">DELETE </button></td>
             <td style="visibility:hidden;" class="bg-dark"><?php echo $result->id;?></td>
@@ -165,9 +189,10 @@ $(document).ready(function () {
        }).get();
        
        console.log(data);
-       $('#id').val(data[5]);
+       $('#id').val(data[6]);
        $('#name').val(data[1]);
        $('#email').val(data[2]);
+       $('#type').val(data[3]);
    });
 });
 </script>
@@ -181,7 +206,7 @@ $(document).ready(function () {
        }).get();
        
        console.log(data);
-       $('#deleteid').val(data[5]);
+       $('#deleteid').val(data[6]);
    });
 });
 </script>

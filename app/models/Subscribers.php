@@ -8,9 +8,10 @@
 
     public function addSubscriber($data)
     {
-       $this->db->query("INSERT INTO subscribers(name,email,userid) VALUES(:name,:email,:userid)");
+       $this->db->query("INSERT INTO subscribers(name,email,type,userid) VALUES(:name,:email,:type,:userid)");
        $this->db->bindvalues(':name',$data['name']);
        $this->db->bindvalues(':email',$data['email']);
+       $this->db->bindvalues(':type',$data['type']);       
        $this->db->bindvalues(':userid',$_SESSION['user_id']);
 
        if($this->db->execute())
@@ -52,11 +53,12 @@
     public function updateData($data)
     {
         $this->db->query("UPDATE subscribers
-                          SET name=:name,email=:email
+                          SET name=:name,email=:email,type=:type
                           WHERE id=:id           
                         ");
         $this->db->bindvalues(':name',$data['name']);
         $this->db->bindvalues(':email',$data['email']);
+        $this->db->bindvalues(':type',$data['type']);
         $this->db->bindvalues(':id',$data['id']);
 
         if($this->db->execute())
@@ -74,7 +76,7 @@
         $this->db->query("SELECT * FROM subscribers WHERE id=:id");
         $this->db->bindvalues(':id',$data['id']);
         $result=$this->db->single();
-        if(($result->name==$data['name'])&&($result->email==$data['email']))
+        if(($result->name==$data['name'])&&($result->email==$data['email'])&&($result->type==$data['type']))
         {
             return true;
         }
