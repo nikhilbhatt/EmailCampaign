@@ -165,16 +165,23 @@ type="text/javascript"
 <script type="text/javascript">
 $(document).ready(function() {
     $('.table').DataTable({
-     "pagingtype":"full_numbers",
-     "lengthMenu":[
-       [10,25,50,-1],
-       [10,25,50,"all"]
-     ],
-     responsive:true,
-     language:{
+     'paging':true,
+     'responsive':true,
+     'language':{
            search:"_INPUT_",
            searchPlaceholder:"Search Records"
-     }  
+     },
+     'columnDefs':[
+       {
+         "targets":[0,4,5,6],
+         "searchable":false
+       },
+       {
+         "targets":[6],
+         "searchable":false,
+         "visible":false
+       }
+     ]  
     } );
 } );
 </script>
