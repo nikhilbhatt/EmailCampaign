@@ -23,10 +23,11 @@ class CampaignHistory{
 
         $this->db->execute();
     }
-    public function getSubscriberList()
+    public function getSubscriberList($type)
     {
-        $this->db->query("SELECT * FROM subscribers WHERE userid=:userid");
+        $this->db->query("SELECT * FROM subscribers WHERE userid=:userid and type=:type");
         $this->db->bindvalues(':userid',$_SESSION['user_id']);
+        $this->db->bindvalues(':type',$type);
         return $this->db->resultSet();
     }
 

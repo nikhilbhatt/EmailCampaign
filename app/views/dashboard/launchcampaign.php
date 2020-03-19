@@ -15,9 +15,20 @@
             </div>
             <div class="form-group mb-2 md-form">
                <label for="body">Body: <sup>*</sup></label>
-               <textarea name="body" class="md-textarea form-control <?php echo (!empty($data['body_err']))? 'is-invalid':'';?>" rows="12" 
+               <textarea name="body" class="md-textarea mb-4 form-control <?php echo (!empty($data['body_err']))? 'is-invalid':'';?>" rows="12" 
                > <?php echo $data['body'];?></textarea>
                <span class="invalid-feedback"><?php echo $data['body_err'];?> </span>
+            </div>
+            <div class="form-group mb-2 md-form">
+                <label for="type">Send To: <sup>*</sup></label>
+                <select name="type" value="nik" class="form-control">
+                   <option value="Student" <?php if($data['type']=='Student'){echo 'selected';}?>>Student</option>
+                   <option value="Engineer" <?php if($data['type']=='Engineer'){echo 'selected';}?>>Engineer</option>
+                   <option value="Journalist" <?php if($data['type']=='Journalist'){echo 'selected';}?>>Journalist</option>
+                   <option value="Professor" <?php if($data['type']=='Professor'){echo 'selected';}?>>Professor</option>
+                   <option value="Doctor" <?php if($data['type']=='Doctor'){echo 'selected';}?>>Doctor</option>
+                   <option value="Other" <?php if($data['type']=='other'){echo 'selected';}?>>Other</option>
+                </select>
             </div>
             <div class="container col-md-2 mt-4">
                 <input type="submit" value="Launch" class="btn btn-block" style="background-color:#FF0065; color:white;">
@@ -26,5 +37,4 @@
     </div>
   </div>
 </div>  
-<?php require_once APPROOT.'/views/includes/bottom.php'?>
 <?php require_once APPROOT.'/views/includes/footer.php' ?>

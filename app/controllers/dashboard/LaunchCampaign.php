@@ -20,6 +20,7 @@ class LaunchCampaign extends Controller
             $data=[
                'subject'=>trim($_POST['subject']),
                'body'=>trim($_POST['body']),
+               'type'=>$_POST['type'],
                'subject_err'=>'',
                'body_err'=>''
             ]; 
@@ -46,6 +47,7 @@ class LaunchCampaign extends Controller
            $data=[
                'subject'=>'',
                'body'=>'',
+               'type'=>'',
                'subject_err'=>'',
                'body_err'=>''
            ];
@@ -56,7 +58,7 @@ class LaunchCampaign extends Controller
    }
    public  function launchCampaignUsingAws($data){
       //fetch email of subscribers.
-      $subscribers=$this->campaignModel->getSubscriberList();
+      $subscribers=$this->campaignModel->getSubscriberList($data['type']);
       $emails=[];
       foreach($subscribers as $subscriber)
       {
