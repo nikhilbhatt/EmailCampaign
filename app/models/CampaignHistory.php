@@ -25,9 +25,16 @@ class CampaignHistory{
     }
     public function getSubscriberList($type)
     {
-        $this->db->query("SELECT * FROM subscribers WHERE userid=:userid and type=:type");
+        if($type=='All')
+        {
+            $this->db->query("SELECT * FROM subscribers WHERE userid=:userid");
+        }
+        else
+        {
+            $this->db->query("SELECT * FROM subscribers WHERE userid=:userid and type=:type");
+            $this->db->bindvalues(':type',$type);
+        }
         $this->db->bindvalues(':userid',$_SESSION['user_id']);
-        $this->db->bindvalues(':type',$type);
         return $this->db->resultSet();
     }
 

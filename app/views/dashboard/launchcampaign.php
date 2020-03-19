@@ -28,6 +28,7 @@
                    <option value="Professor" <?php if($data['type']=='Professor'){echo 'selected';}?>>Professor</option>
                    <option value="Doctor" <?php if($data['type']=='Doctor'){echo 'selected';}?>>Doctor</option>
                    <option value="Other" <?php if($data['type']=='other'){echo 'selected';}?>>Other</option>
+                   <option value="All" <?php if($data['type']=='All'){echo 'selected';}?>>All</option>
                 </select>
             </div>
             <div class="container col-md-2 mt-4">

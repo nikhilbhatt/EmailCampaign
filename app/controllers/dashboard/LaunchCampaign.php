@@ -56,57 +56,67 @@ class LaunchCampaign extends Controller
         }   
 
    }
-   public  function launchCampaignUsingAws($data){
+   public  function launchCampaignUsingAws($data)
+   {
       //fetch email of subscribers.
+      //add modal showing are you sure you want to send the email
       $subscribers=$this->campaignModel->getSubscriberList($data['type']);
       $emails=[];
       foreach($subscribers as $subscriber)
       {
          array_push($emails,$subscriber->email);
       }
+      if(empty($emails))
+      {
+          echo '<script>alert("Please add subscribebr before sending the email.");document.location="LaunchCampaign"</script>';
+      }
+      else
+      {
       //Wtite Code for sending email using Aws and its credentials.
-      $SesClient = new SesClient([
-         'profile' => 'default',
-         'version' => '2010-12-01',
-         'region'  => 'ap-south-1'
-        ]);
-       $senderEmail = 'nikhilbhatt2210@gmail.com';
-       $configuration_set = 'ConfigSet';
-       $char_set = 'UTF-8';
-       try {
-                $result = $SesClient->sendEmail([
-                        'Destination' => [
-                                           'ToAddresses' => $emails,
+            $SesClient = new SesClient([
+               'profile' => 'default',
+               'version' => '2010-12-01',
+               'region'  => 'ap-south-1'
+            ]);
+            $senderEmail = 'nikhilbhatt2210@gmail.com';
+            $configuration_set = 'ConfigSet';
+            $char_set = 'UTF-8';
+            try {
+                     $result = $SesClient->sendEmail([
+                              'Destination' => [
+                                                'ToAddresses' => $emails,
+                                                ],
+                              'ReplyToAddresses' => [$senderEmail],
+                              'Source' => $senderEmail,
+                              'Message' => [
+                              'Body' => [
+                                          'Html' => [
+                                                      'Charset' => $char_set,
+                                                      'Data' => $data['body'],
+                                                      ],
+                                          'Text' => [
+                                                      'Charset' => $char_set,
+                                                      'Data' => $data['body'],
+                                                      ],
                                           ],
-                         'ReplyToAddresses' => [$senderEmail],
-                         'Source' => $senderEmail,
-                         'Message' => [
-                         'Body' => [
-                                     'Html' => [
-                                                'Charset' => $char_set,
-                                                'Data' => $data['body'],
-                                                ],
-                                      'Text' => [
-                                                'Charset' => $char_set,
-                                                'Data' => $data['body'],
-                                                ],
+                              'Subject' => [
+                                          'Charset' => $char_set,
+                                          'Data' => $data['subject'],
+                                          ],
                                     ],
-                        'Subject' => [
-                                     'Charset' => $char_set,
-                                     'Data' => $data['subject'],
-                                    ],
-                                ],
-                        'ConfigurationSetName' => $configuration_set,
-                    ]);
-                    $messageId = $result['MessageId'];
-                    //if email us successfully sent. send data to the database. with timestamp and show changes in the history.
-                    $this->saveData($data);
-                    die('message='.$messageId);
-                    echo '<script>alert("email sent!!");document.location="LaunchCampaign"</script>';
-            } catch (AwsException $e) {
-                // output error message if fails
-                echo '<script>alert("The email was not sent.");document.location="LaunchCampaign"</script>';
-            } 
+                              'ConfigurationSetName' => $configuration_set,
+                        ]);
+                        $messageId = $result['MessageId'];
+                        //if email us successfully sent. send data to the database. with timestamp and show changes in the history.
+                        $this->saveData($data);
+                        die('message='.$messageId);
+                        echo '<script>alert("email sent!!");document.location="LaunchCampaign"</script>';
+                  }catch (AwsException $e)
+                  {
+                     // output error message if fails
+                     echo '<script>alert("The email was not sent.");document.location="LaunchCampaign"</script>';
+                  } 
+      }
    
    }
    public function saveData($data)
@@ -114,6 +124,4 @@ class LaunchCampaign extends Controller
         $this->campaignModel->sendData($data);
    }
 }
-
-
 ?>
