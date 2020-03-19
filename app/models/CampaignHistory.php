@@ -16,9 +16,10 @@ class CampaignHistory{
 
     public function sendData($data)
     {
-        $this->db->query("INSERT INTO campaigns(subject,body,userid) VALUES(:subject,:body,:userid)");
+        $this->db->query("INSERT INTO campaigns(subject,body,userid,sendto) VALUES(:subject,:body,:userid,:sendto)");
         $this->db->bindvalues(':subject',$data['subject']);
         $this->db->bindvalues(':body',$data['body']);
+        $this->db->bindvalues(':sendto',$data['type']);
         $this->db->bindvalues(':userid',$_SESSION['user_id']);
 
         $this->db->execute();

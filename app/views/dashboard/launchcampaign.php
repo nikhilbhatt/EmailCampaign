@@ -6,7 +6,7 @@
       <div class="card card-body bg-light mt-5">
           <h2 >Launch Your Campaign</h2> 
           <p> Please Enter Your Email Subject and Body</p>
-          <form action="<?php echo URLROOT;?>/LaunchCampaign" method="post">
+          <form action="<?php echo URLROOT;?>/LaunchCampaign" method="post" onsubmit='addnewline();'>
             <div class="form-group">
                <label for="subject">Subject: <sup>*</sup></label>
                <input type="text" name="subject" class="form-control form-control-lg <?php echo (!empty($data['subject_err']))? 'is-invalid' : '';?>"
@@ -15,7 +15,8 @@
             </div>
             <div class="form-group mb-2 md-form">
                <label for="body">Body: <sup>*</sup></label>
-               <textarea name="body" class="md-textarea mb-4 form-control <?php echo (!empty($data['body_err']))? 'is-invalid':'';?>" rows="12" 
+               <textarea id="body" name="body" style='display:none'> <?php echo $data['body'];?></textarea>
+               <textarea id="textbody"  class="md-textarea mb-4 form-control <?php echo (!empty($data['body_err']))? 'is-invalid':'';?>" rows="12" 
                > <?php echo $data['body'];?></textarea>
                <span class="invalid-feedback"><?php echo $data['body_err'];?> </span>
             </div>
@@ -38,4 +39,26 @@
     </div>
   </div>
 </div>  
-<?php require_once APPROOT.'/views/includes/footer.php' ?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<srcipt type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script
+type="text/javascript" 
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+      function addnewline()
+      {
+         text=document.getElementById('textbody').value;
+         text=text.replace(/  /g,"[sp][sp]");
+         text=text.replace(/\n/g,"[nl]");
+         document.getElementById('body').value=text;
+      }
+</script>
+</body>
+</html>

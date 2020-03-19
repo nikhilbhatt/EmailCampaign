@@ -12,6 +12,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Body</th>
+                <th scope="col">Send To</th>
                 <th scope="col">Time</th>
               </tr>
             </thead>
@@ -21,6 +22,7 @@
                 <th scope="row"><?php echo $key++;?></th>
                 <td><?php echo $result->subject;?></td>
                 <td><?php echo $result->body;?></td>
+                <td><?php echo $result->sendto;?></td>
                 <td><?php echo $result->timestamp;?></td>
               </tr>
             <?php endforeach; ?>
