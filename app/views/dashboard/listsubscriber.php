@@ -68,7 +68,7 @@
                       </div>
                       <div class="form-group">
                     <label for="type">Subscriber Type</label>
-                    <select class="form-control" name="type">
+                    <select class="form-control" id="type" name="type">
                        <option value="Student">Student</option>
                        <option value="Engineer">Engineer</option>
                        <option value="Journalist">Journalist</option>
@@ -118,7 +118,7 @@
       <?php if(empty($data['result'])):?>
        <h4> Your subcriber list is empty! Click add subscriber button to add one</h4>
       <?php else: ?>
-      <table class="table table-striped table-hover mb-5" style="width:100%">
+      <table id="tableid" class="table table-striped table-hover mb-5" style="width:100%">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -175,20 +175,15 @@ $(document).ready(function() {
        {
          "targets":[0,4,5,6],
          "searchable":false
-       },
-       {
-         "targets":[6],
-         "searchable":false,
-         "visible":false
        }
      ]  
-    } );
+    });
 } );
 </script>
 
 <script type="text/javascript">
 $(document).ready(function () {
-   $('.editbtn').on('click',function () {
+   $('#tableid').on('click','.editbtn',function () {
        $('#editmodal').modal('show');
        $tr=$(this).closest('tr');
        var data=$tr.children("td").map(function(){
@@ -205,7 +200,7 @@ $(document).ready(function () {
 </script>
 <script type="text/javascript">
 $(document).ready(function () {
-   $('.deletebtn').on('click',function () {
+   $('#tableid').on('click','.deletebtn',function () {
        $('#deletemodal').modal('show');
        $tr=$(this).closest('tr');
        var data=$tr.children("td").map(function(){
