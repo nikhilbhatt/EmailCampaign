@@ -93,7 +93,7 @@ class LaunchCampaign extends Controller
          $plaintext_body = 'Hi '.$subscriber->name.',<br><br>'.$data['body'];
          $html_body ='<h3>Hi '.$subscriber->name.',</h3><br><br>'.
                      '<p>'.$data['body'].'</p>';
-         $senderEmail = 'nikhilbhatt2210@gmail.com';
+         $senderEmail = $_SESSION['user_email'];
          $configuration_set = 'ConfigSet';
          $char_set = 'UTF-8';
          try {
