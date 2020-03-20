@@ -23,14 +23,24 @@ class LaunchCampaign extends Controller
                $text=preg_replace("#\[sp\]#" , "&nbsp;", $text);
                $text=preg_replace("#\[nl\]#" , "<br>\n", $text);
             }
+            else
+            {
+               $text='';
+            }
             $data=[
+               'companyname'=>trim($_POST['companyname']),
                'subject'=>trim($_POST['subject']),
                'body'=>$text,
                'type'=>$_POST['type'],
+               'companyname_err'=>'',
                'subject_err'=>'',
                'body_err'=>''
             ]; 
-
+           
+            if(empty($data['companyname']))
+            {
+               $data['companyname_err']='enter your company/organisation/your name';
+            }
             if(empty($data['subject']))
             {
               $data['subject_err']='Subject is required';
@@ -51,22 +61,21 @@ class LaunchCampaign extends Controller
         else
         {
            $data=[
+              'companyname'=>'',
                'subject'=>'',
                'body'=>'',
                'type'=>'',
+               'companyname_err'=>'',
                'subject_err'=>'',
                'body_err'=>''
            ];
            $this->views('dashboard/launchcampaign',$data);
-
         }   
-
    }
    public  function launchCampaignUsingAws($data)
    {
       //fetch email of subscribers.
       //add modal showing are you sure you want to send the email
-      die('emil sent');
       $subscribers=$this->campaignModel->getSubscriberList($data['type']);
       $emails=[];
       $email=[];
@@ -81,6 +90,9 @@ class LaunchCampaign extends Controller
             'version' => '2010-12-01',
             'region'  => 'ap-south-1'
          ]);
+         $plaintext_body = 'Hi '.$subscriber->name.',<br><br>'.$data['body'];
+         $html_body ='<h3>Hi '.$subscriber->name.',</h3><br><br>'.
+                     '<p>'.$data['body'].'</p>';
          $senderEmail = 'nikhilbhatt2210@gmail.com';
          $configuration_set = 'ConfigSet';
          $char_set = 'UTF-8';
@@ -90,16 +102,16 @@ class LaunchCampaign extends Controller
                                              'ToAddresses' => $email,
                                              ],
                            'ReplyToAddresses' => [$senderEmail],
-                           'Source' => 'Fast-Mail<japer78029@allmtr.com>',
+                           'Source' => $data['companyname'].'<japer78029@allmtr.com>',
                            'Message' => [
                            'Body' => [
                                        'Html' => [
                                                    'Charset' => $char_set,
-                                                   'Data' => $data['body'],
+                                                   'Data' => $plaintext_body
                                                    ],
                                        'Text' => [
                                                    'Charset' => $char_set,
-                                                   'Data' => $data['body'],
+                                                   'Data' => $html_body
                                                    ],
                                        ],
                            'Subject' => [

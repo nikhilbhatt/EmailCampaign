@@ -7,6 +7,12 @@
           <h2 >Launch Your Campaign</h2> 
           <p> Please Enter Your Email Subject and Body</p>
           <form action="<?php echo URLROOT;?>/LaunchCampaign" method="post" onsubmit='addnewline();'>
+          <div class="form-group">
+               <label for="companyname">Organisation/Company/Your Name: <sup>*</sup></label>
+               <input type="text" name="companyname" class="form-control form-control-lg <?php echo (!empty($data['comapnyname_err']))? 'is-invalid' : '';?>"
+               value="<?php echo $data['companyname'];?>" autofocus>
+               <span class="invalid-feedback"><?php echo $data['companyname_err'];?> </span>
+            </div>
             <div class="form-group">
                <label for="subject">Subject: <sup>*</sup></label>
                <input type="text" name="subject" class="form-control form-control-lg <?php echo (!empty($data['subject_err']))? 'is-invalid' : '';?>"
@@ -34,6 +40,9 @@
             </div>
             <div class="container col-md-2 mt-4">
                 <input type="submit" value="Launch" class="btn btn-block" style="background-color:#FF0065; color:white;">
+            </div>
+            <div align='right'>
+             <a href='template'>View Example Template</a>
             </div>
        </div>
     </div>
