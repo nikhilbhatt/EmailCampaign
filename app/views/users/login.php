@@ -1,4 +1,6 @@
-<?php $page='login'; require_once APPROOT.'/views/includes/header.php';?>
+<?php $page='login'; require_once APPROOT.'/views/includes/headerbeforelogin.php';?>
+
+
 <div class="container" >
   <div class="row">
     <div class="col-md-6 mx-auto">

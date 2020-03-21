@@ -1,4 +1,4 @@
-<?php $page='resetpassword';require_once APPROOT.'/views/includes/header.php'; ?>
+<?php $page='resetpassword';require_once APPROOT.'/views/includes/headerbeforelogin.php'; ?>
 
 <div class="container" >
     <div class="row">

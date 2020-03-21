@@ -138,8 +138,8 @@
             <td><?php echo $result->name;?></td>
             <td><?php echo $result->email;?></td>
             <td><?php echo $result->type;?></td>
-            <td><button type="button" class="btn btn-success editbtn">EDIT</button></td>
-            <td><button type="button" class="btn btn-danger deletebtn">DELETE </button></td>
+            <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
+            <td><button type="button" class="btn btn-danger deletebtn"><i class="fa fa-trash"></i> </button></td>
             <td style="visibility:hidden;" class="bg-dark"><?php echo $result->id;?></td>
           </tr>
         <?php endforeach; ?>
