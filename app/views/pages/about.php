@@ -1,18 +1,24 @@
-<?php $page='about'; require_once APPROOT.'/views/includes/header.php';?>
-<div class="row">
-    <div class="col-md-4" style="margin-top:250px;">
-      <div style="margin-left:25px;">
+<?php $page='about'; require_once APPROOT.'/views/includes/headerbeforelogin.php';?>
+
+
+<div class="row ml-2 h-100">
+    <div class="col-md-4 mb-5 col-sm-12 my-auto" >
+      <div class="my-auto mx-auto">
           <h1 style="color:blue; font-family:impact; font-style:bold; font-size:83px">About Us</h1>
-          <p style="font-family:Microsoft Yi Baiti; font-size:30px;">We provide free of cost email servicing.</p>
-          
+          <p style="font-family:Microsoft Yi Baiti; font-size:30px;"><i class="fa fa-check-square text-success"></i> We provide email campaigning service free of cost.</p>
+          <p style="font-family:Microsoft Yi Baiti; font-size:30px;"><i class="fa fa-check-square text-success"></i> We make it easy to send your email to your subscribers.</p>
       </div>
     </div>
-    <div class="col-md-8" style="background-image: url(<?php echo URLROOT;?>/img/about2.jpg);  height:1050px; 
-       background-repeat:no-repeat;">
+    <div class="col-md-8" >
+    <div class="col-md-8 float-right">
+    <img class="img-fluid float-right" src="<?php echo URLROOT;?>/img/about2.jpg" alt="Italian Trulli">
+    </div>
     </div>
 </div>
+
+
 <div>
-    <footer class="page-footer font-small navbar-dark bg-light pt-2 " style="position:relative; 
+    <footer class="page-footer font-small navbar-dark bg-light pt-2 " style="position:fixed; 
     left:0;
     width:100%;
     bottom: 0;
