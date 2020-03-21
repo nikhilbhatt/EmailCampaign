@@ -37,7 +37,7 @@
        href="<?php echo URLROOT; ?>/PreviousCampaign">PREVIOUS CAMPAIGN</a>
       </li>
       <li class="nav-item" style="border-radius:10px; height:35px;margin-right:20px; width:90px;">
-      <a class="nav-link font-weight-bold text-center"style="border-radius:10px; font-size:15px; color:black;" href="<?php echo URLROOT; ?>/logout">LOGOUT </a>
+      <a class="nav-link font-weight-bold text-center" data-toggle="modal" data-target="#logout"style="border-radius:10px; font-size:15px; color:black;" href="<?php echo URLROOT; ?>/logout">LOGOUT </a>
       </li>
     <?php else : ?>
       <li class="nav-item <?php if($page=='register'){ echo 'active bg-danger';}?>" style="border-radius:10px; margin-right:50px; height:35px; width:90px;">
@@ -52,3 +52,27 @@
     </ul>
   </div>
 </nav>  
+
+
+
+<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?php echo URLROOT;?>/Logout" method="post">
+          <div class="modal-body">
+                      <h6>Are you sure you want to logout?</h6>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+            <button type="submit" name="deletedata" class="btn btn-primary">YES</button>
+          </div>
+          </form>
+        </div>
+      </div>
+</div>
