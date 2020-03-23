@@ -158,14 +158,10 @@ class LaunchCampaign extends Controller
    {
       $subscribers=$this->campaignModel->getSubscriberList($data['type']);
       $emails=[];
-      $email=[];
       $body =$data['body'];
       foreach($subscribers as $subscriber)
       {
-         unset($email);
-         $email=[];
          array_push($emails,$subscriber->email);
-         array_push($email,$subscriber->email);
          $senderEmail = $_SESSION['user_email'];
          $mail=new PHPMailer();
          $mail-> isSMTP();
@@ -175,8 +171,8 @@ class LaunchCampaign extends Controller
          $mail->Password="YOUR_PASSWORD";
          $mail->Port=465;
          $mail->SMTPSecure="ssl";
-         $mail->setFrom("emailcampaign@gmail.com",$data['companyname']);
-         $mail->addAddress($email);
+         $mail->setFrom($senderEmail,$data['companyname']);
+         $mail->addAddress($subscriber->email);
          $mail->isHTML(true);
          $mail->Subject=$data['subject'];
          $mail->Body="
