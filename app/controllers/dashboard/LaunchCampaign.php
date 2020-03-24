@@ -1,6 +1,7 @@
 <?php
  use Aws\Ses\SesClient;
  use Aws\Exception\AwsException;
+ use PHPMailer\PHPMailer\PHPMailer;
 class LaunchCampaign extends Controller
 {
    public function __construct()
@@ -32,6 +33,7 @@ class LaunchCampaign extends Controller
                'subject'=>trim($_POST['subject']),
                'body'=>$text,
                'type'=>$_POST['type'],
+               'sendusing'=>$_POST['sendusing'],
                'companyname_err'=>'',
                'subject_err'=>'',
                'body_err'=>''
@@ -51,7 +53,18 @@ class LaunchCampaign extends Controller
             }
             if(empty($data['subject_err'])&&empty($data['body_err']))
             {
-               $this->launchCampaignUsingAws($data);
+               if($data['sendusing']=='AWS')
+               {
+                  $this->launchCampaignUsingAws($data);
+               }
+               else
+               if($data['sendusing']=='SMTP'){
+                    $this->launchCampaignUsingSMTP($data);
+               }
+               else
+               {
+                  echo '<script>alert("Something went wrong. Try again!!");document.location="LaunchCampaign"</script>';
+               }
             }
             else
             {
@@ -65,6 +78,7 @@ class LaunchCampaign extends Controller
                'subject'=>'',
                'body'=>'',
                'type'=>'',
+               'sendusing'=>'',
                'companyname_err'=>'',
                'subject_err'=>'',
                'body_err'=>''
@@ -122,8 +136,6 @@ class LaunchCampaign extends Controller
                            'ConfigurationSetName' => $configuration_set,
                      ]);
                      $messageId = $result['MessageId'];
-                     //if email us successfully sent. send data to the database. with timestamp and show changes in the history.
-                     echo '<script>alert("email sent!!");document.location="LaunchCampaign"</script>';
                }catch (AwsException $e)
                {
                   // output error message if fails
@@ -141,6 +153,44 @@ class LaunchCampaign extends Controller
             echo '<script>alert("email sent!!");document.location="LaunchCampaign"</script>';
       }
    
+   }
+   public function launchCampaignUsingSMTP($data)
+   {
+      $subscribers=$this->campaignModel->getSubscriberList($data['type']);
+      $emails=[];
+      $body =$data['body'];
+      foreach($subscribers as $subscriber)
+      {
+         array_push($emails,$subscriber->email);
+         $senderEmail = $_SESSION['user_email'];
+         $mail=new PHPMailer();
+         $mail-> isSMTP();
+         $mail->Host='smtp.gmail.com';
+         $mail->SMTPAuth =true;
+         $mail->Username="YOUR_EMAIL";
+         $mail->Password="YOUR_PASSWORD";
+         $mail->Port=465;
+         $mail->SMTPSecure="ssl";
+         $mail->setFrom($senderEmail,$data['companyname']);
+         $mail->addAddress($subscriber->email);
+         $mail->isHTML(true);
+         $mail->Subject=$data['subject'];
+         $mail->Body="
+             Hi $subscriber->name,<br><br>
+             <p>$body</p>
+         ";
+         $mail->send();
+      }
+      if(empty($emails))
+      {
+          echo '<script>alert("Please add subscribebr before sending the email.");document.location="LaunchCampaign"</script>';
+      }
+      else
+      {
+      //Wtite Code for sending email using Aws and its credentials.
+            $this->saveData($data);
+            echo '<script>alert("email sent!!");document.location="LaunchCampaign"</script>';
+      }
    }
    public function saveData($data)
    {
