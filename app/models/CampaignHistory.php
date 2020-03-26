@@ -39,6 +39,17 @@ class CampaignHistory{
         return $this->db->resultSet();
     }
 
+    public function totalCampaigns()
+    {
+        $result=$this->getEmailHistory();
+        $this->db->rowCount();
+    }
+
+    public function totalSubscribers(){
+        $result=$this->getSubscriberList('All');
+        return $this->db->rowCount();
+    }
+
 }
 
 ?>

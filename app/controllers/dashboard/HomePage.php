@@ -4,12 +4,22 @@
 
     public function __construct()
     {
-       die($this->views('dashboard/homepage'));
+      if(!isLoggedIn())
+      {
+         redirect('login');
+      }
+       $this->campaignModel=$this->model('CampaignHistory');
     }
 
     public function index()
     {
-       
+      $subscriberList=$this->campaignModel->totalSubscribers();
+      $campaignList=$this->campaignModel->totalCampaigns();
+      $data=[
+         'totalsubscribers'=>$subscriberList,
+         'totalcampaigns'=>$campaignList
+      ];
+      $this->views('dashboard/homepage',$data);
     }
 
  }

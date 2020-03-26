@@ -1,4 +1,4 @@
-<?php require_once APPROOT.'/views/includes/header.php'; ?>
+<?php $page='homepage'; require_once APPROOT.'/views/includes/header.php'; ?>
 
 <?php $parts=explode(' ',$_SESSION['user_name']);?>
 
@@ -11,7 +11,7 @@
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-users fa-stack-1x fa-inverse"></i>
             </span>
-            <h1 class="font-weight-bold mt-3">0</h1>
+            <h1 class="font-weight-bold mt-3"><?php if(empty($data['totalsubscribers'])){echo '0';}else { echo $data['totalsubscribers'];}?></h1>
             <h2 class="font-weight-bold mt-3">Subscribers Count</h2>
         </div>
         <div class="col-md-6">   
@@ -19,7 +19,7 @@
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
             </span>
-            <h1 class="font-weight-bold mt-3">0</h1>
+            <h1 class="font-weight-bold mt-3"><?php if(empty($data['totalcampaigns'])){echo '0';}else{echo $data['totalcampaigns'];}?></h1>
             <h2 class="font-weight-bold mt-3">Previous Campaigns Count</h2>
         </div>
     </div>
