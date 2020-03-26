@@ -5,11 +5,11 @@
     <div class="col-md-12 mx-auto">
       <div class="card card-body bg-light mt-5 mb-5">
           <h2 >Launch Your Campaign</h2> 
-          <p> Please Enter Your Email Subject and Body</p>
+          <p> Please Enter Your Email Subject and Body</p>  
           <form action="<?php echo URLROOT;?>/LaunchCampaign" method="post" onsubmit='addnewline();'>
           <div class="form-group">
                <label for="companyname">Organisation/Company/Your Name: <sup>*</sup></label>
-               <input type="text" name="companyname" class="form-control form-control-lg <?php echo (!empty($data['comapnyname_err']))? 'is-invalid' : '';?>"
+               <input type="text" name="companyname" class="form-control form-control-lg <?php echo (!empty($data['companyname_err']))? 'is-invalid' : '';?>"
                value="<?php echo $data['companyname'];?>" autofocus>
                <span class="invalid-feedback"><?php echo $data['companyname_err'];?> </span>
             </div>

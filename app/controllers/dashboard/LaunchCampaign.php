@@ -51,7 +51,7 @@ class LaunchCampaign extends Controller
             {
                $data['body_err']='body field is required';
             }
-            if(empty($data['subject_err'])&&empty($data['body_err']))
+            if(empty($data['subject_err'])&&empty($data['body_err'])&&empty($data['companyname_err']))
             {
                if($data['sendusing']=='AWS')
                {
