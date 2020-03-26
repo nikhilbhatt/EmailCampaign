@@ -8,6 +8,10 @@ Class Pages extends Controller{
     {
          // echo "Pages controller is working soon it will be changed to error file";
          //Load the data from model and put it here.
+         if(isLoggedIn())
+         {
+           redirect('launchCampaign');
+         }
 
     }
     public function index()   //index is the default function which is called after constructor.
