@@ -42,7 +42,7 @@ class CampaignHistory{
     public function totalCampaigns()
     {
         $result=$this->getEmailHistory();
-        $this->db->rowCount();
+        return $this->db->rowCount();
     }
 
     public function totalSubscribers(){
