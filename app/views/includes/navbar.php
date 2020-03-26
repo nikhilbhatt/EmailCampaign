@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" style="font-size:30px; font-family:impact;color:#ff4500; font-style:bold" href="<?php echo URLROOT;?>">Fast-Mail</a>
+  <a class="navbar-brand" style="font-size:30px; font-family:impact;color:#ff4500; font-style:bold" 
+  href="<?php if(isset($_SESSION['user_id'])){echo URLROOT.'/HomePage';}else {echo URLROOT;}?>">Fast-Mail</a>
   <button class="navbar-toggler" type="button" 
        data-toggle="collapse" 
        data-target="#navbarsExampleDefault"
