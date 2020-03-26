@@ -51,7 +51,7 @@ class GoogleLogin extends Controller{
         if($loggedInUser)
         {
             $this->createUserSession($loggedInUser);
-            redirect('LaunchCampaign');
+            redirect('HomePage');
         }
         else
         {
