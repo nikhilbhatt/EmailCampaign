@@ -15,7 +15,9 @@
     {
       $subscriberList=$this->campaignModel->totalSubscribers();
       $campaignList=$this->campaignModel->totalCampaigns();
+      $parts=explode(' ',$_SESSION['user_name']);
       $data=[
+         'name'=>$parts[0],
          'totalsubscribers'=>$subscriberList,
          'totalcampaigns'=>$campaignList
       ];

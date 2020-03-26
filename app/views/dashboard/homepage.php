@@ -1,9 +1,8 @@
 <?php $page='homepage'; require_once APPROOT.'/views/includes/header.php'; ?>
 
-<?php $parts=explode(' ',$_SESSION['user_name']);?>
 
 <div class="container">
-    <h1 class="mt-4 font-weight-bold"><?php echo ucfirst($parts[0]);?>'s DashBoard</h1>
+    <h1 class="mt-4 font-weight-bold"><?php echo ucfirst($data['name']);?>'s DashBoard</h1>
     <hr class="mt-4" >
     <div class="row mt-4 text-center">
         <div class="col-md-6">
