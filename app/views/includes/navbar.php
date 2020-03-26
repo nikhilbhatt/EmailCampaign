@@ -26,6 +26,10 @@
     <?php if(session_status()==PHP_SESSION_NONE){
       session_start();}
           if(isset($_SESSION['user_id'])) : ?>
+          <li class="nav-item <?php if($page=='homepage'){ echo 'active bg-danger';}?>"style="border-radius:10px; height:35px;margin-right:20px; width:180px;">
+      <a class="nav-link font-weight-bold text-center <?php if($page=='homepage'){ echo 'text-white';}?>"style="border-radius:10px; font-size:15px;<?php if($page!='homepage'){ echo 'color:black;';}?>"
+       href="<?php echo URLROOT; ?>/HomePage">HOME </a>
+      </li>
       <li class="nav-item <?php if($page=='launchcampaign'){ echo 'active bg-danger';}?>"style="border-radius:10px; height:35px;margin-right:20px; width:180px;">
       <a class="nav-link font-weight-bold text-center <?php if($page=='launchcampaign'){ echo 'text-white';}?>"style="border-radius:10px; font-size:15px;<?php if($page!='launchcampaign'){ echo 'color:black;';}?>"
        href="<?php echo URLROOT; ?>/LaunchCampaign">LAUNCH CAMPAIGN </a>
