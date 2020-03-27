@@ -11,6 +11,5 @@
     <link rel="stylesheet" href="<?php echo URLROOT;?>/css/style.css">
     <title><?php echo SITENAME;?></title>
 </head>
-<body style="background-image: url(<?php echo URLROOT;?>/img/pinkbackground.jpg);  background-position:center;
-      background-size:cover;">
+<body >
 <?php require_once APPROOT.'/views/includes/navbar.php';?>

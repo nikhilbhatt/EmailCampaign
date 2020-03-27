@@ -7,6 +7,7 @@ define('DB_USER','root');
 define('DB_PASS','root');
 define('DB_NAME','newdatabase');
 
+define('YOUR_EMAIL','email');
 //approot
 define('APPROOT',dirname(dirname(__FILE__)));
 
