@@ -85,14 +85,12 @@ class ForgotPassword extends Controller{
                     if($mail->send())
                     {
                         //redirect to new page saying verification link sent succcessfully.
-                        die($mail->ErrorInfo);
                         echo '<script>alert("Check your Email and create new password");document.location="Login"</script>';
 
                     }
                     else
                     {
                         echo '<script>alert("something went here wrong")</script>';
-                        die($mail->ErrorInfo);
                         $this->views('users/forgotpassword',$data); 
                     }
                 }
